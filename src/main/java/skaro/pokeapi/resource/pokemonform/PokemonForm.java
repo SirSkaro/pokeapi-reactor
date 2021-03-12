@@ -2,12 +2,13 @@ package skaro.pokeapi.resource.pokemonform;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.pokemon.Pokemon;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
 
-public class PokemonForm {
+public class PokemonForm implements PokeApiResource {
 
 	private Integer id;
 	private String name;

@@ -2,6 +2,7 @@ package skaro.pokeapi.resource.generation;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.ability.Ability;
@@ -10,9 +11,9 @@ import skaro.pokeapi.resource.pokemonspecies.PokemonSpecies;
 import skaro.pokeapi.resource.type.Type;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
 
-public class Generation {
+public class Generation implements PokeApiResource {
 
-	private String id;
+	private Integer id;
 	private String name;
 	private NamedApiResource<Ability> abilities;
 	private List<Name> names;
@@ -21,10 +22,10 @@ public class Generation {
 	private List<NamedApiResource<Type>> types;
 	private List<NamedApiResource<VersionGroup>> versionGroups;
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

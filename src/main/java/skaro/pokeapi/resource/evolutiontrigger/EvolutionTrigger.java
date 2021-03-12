@@ -2,11 +2,12 @@ package skaro.pokeapi.resource.evolutiontrigger;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.pokemonspecies.PokemonSpecies;
 
-public class EvolutionTrigger {
+public class EvolutionTrigger implements PokeApiResource {
 
 	private Integer id;
 	private String name;

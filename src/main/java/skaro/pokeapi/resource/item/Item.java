@@ -2,6 +2,7 @@ package skaro.pokeapi.resource.item;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.ApiResource;
 import skaro.pokeapi.resource.GenerationGameIndex;
 import skaro.pokeapi.resource.MachineVersionDetail;
@@ -14,7 +15,7 @@ import skaro.pokeapi.resource.itemattribute.ItemAttribute;
 import skaro.pokeapi.resource.itemcategory.ItemCategory;
 import skaro.pokeapi.resource.itemflingeffect.ItemFlingEffect;
 
-public class Item {
+public class Item implements PokeApiResource {
 
 	private Integer id;
 	private String name;

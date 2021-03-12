@@ -2,11 +2,12 @@ package skaro.pokeapi.resource.berryflavor;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.contesttype.ContestType;
 
-public class BerryFlavor {
+public class BerryFlavor implements PokeApiResource {
 
 	private Integer id;
 	private String name;

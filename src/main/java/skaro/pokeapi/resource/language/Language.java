@@ -2,9 +2,10 @@ package skaro.pokeapi.resource.language;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 
-public class Language {
+public class Language implements PokeApiResource {
 
 	private Integer id;
 	private String name;

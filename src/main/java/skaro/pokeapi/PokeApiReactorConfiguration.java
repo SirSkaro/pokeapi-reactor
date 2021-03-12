@@ -1,15 +1,22 @@
 package skaro.pokeapi;
 
+import java.lang.invoke.MethodHandles;
+
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
+import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -17,12 +24,16 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
+import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 
 @Configuration
+@Import(PokeApiEndpointConfiguration.class)
 public class PokeApiReactorConfiguration {
 	public static final String CONFIGURATION_PROPERTIES_PREFIX = "skaro.pokeapi";
 	public static final String POKEAPI_WEBCLIENT_BEAN = "pokeapiWebClientBean";
+	public static final String POKEAPI_JSON_DECODER_BEAN = "pokeapiDecoderBean";
+	public static final String POKEAPI_JSON_ENCODER_BEAN = "pokeapiEncoderBean";
 	
 	@Bean
 	@Valid
@@ -31,34 +42,53 @@ public class PokeApiReactorConfiguration {
 		return new PokeApiConfigurationProperties();
 	}
 	
-	@Bean(POKEAPI_WEBCLIENT_BEAN)
-	public WebClient webClient(HttpClient httpClient, PokeApiConfigurationProperties configurationProperties) {
+	@Bean(POKEAPI_JSON_DECODER_BEAN)
+	public Jackson2JsonDecoder jsonDecoder() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		
-		ExchangeStrategies strategies = ExchangeStrategies
-	            .builder()
+		return new Jackson2JsonDecoder(mapper, MediaType.APPLICATION_JSON);
+	}
+	
+	@Bean(POKEAPI_JSON_ENCODER_BEAN)
+	public Jackson2JsonEncoder jsonEncoder() {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+		
+		return new Jackson2JsonEncoder(mapper, MediaType.APPLICATION_JSON);
+	}
+	
+	@Bean(POKEAPI_WEBCLIENT_BEAN)
+	public WebClient webClient(HttpClient httpClient,
+			@Qualifier(POKEAPI_JSON_ENCODER_BEAN) Jackson2JsonEncoder encoder, 
+			@Qualifier(POKEAPI_JSON_DECODER_BEAN) Jackson2JsonDecoder decoder, 
+			PokeApiConfigurationProperties configurationProperties) {
+		
+		ExchangeStrategies strategies = ExchangeStrategies.builder()
 	            .codecs(clientDefaultCodecsConfigurer -> {
-	            	clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(new ObjectMapper(), MediaType.APPLICATION_JSON));
-	                clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(mapper, MediaType.APPLICATION_JSON));
+	            	clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonEncoder(encoder);
+	                clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonDecoder(decoder);
 	            }).build();
+		
+		ExchangeFilterFunction logRequest = ExchangeFilterFunction.ofRequestProcessor(request -> {
+			Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+			log.info("{} {}",request.method(), request.url());
+			return Mono.just(request);
+		});
 		
 		return WebClient.builder()
 				.clientConnector(new ReactorClientHttpConnector(httpClient))
 				.baseUrl(configurationProperties.getBaseUri().toString())
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.exchangeStrategies(strategies)
+				.filter(logRequest)
 				.build();
 	}
 	
 	@Bean
-	public PokeApiEntityFactory entityFactory(WebClient webClient) {
-		return new WebClientEntityFactory(webClient);
-	}
-	
-	@Bean
-	public PokeApiClient pokeApiClient(PokeApiEntityFactory entityFactory) {
+	public PokeApiClient pokeApiClient(WebClient webClient, PokeApiEndpointRegistry registry) {
+		PokeApiEntityFactory entityFactory = new WebClientEntityFactory(webClient, registry); 
 		return new ReactorPokeApiClient(entityFactory);
 	}
 	

@@ -2,9 +2,10 @@ package skaro.pokeapi.resource.encountermethod;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 
-public class EncounterMethod {
+public class EncounterMethod implements PokeApiResource {
 
 	private Integer id;
 	private String name;

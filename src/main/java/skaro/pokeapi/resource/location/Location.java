@@ -2,13 +2,14 @@ package skaro.pokeapi.resource.location;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.GenerationGameIndex;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.locationarea.LocationArea;
 import skaro.pokeapi.resource.region.Region;
 
-public class Location {
+public class Location implements PokeApiResource {
 
 	private Integer id;
 	private String name;

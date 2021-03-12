@@ -2,6 +2,7 @@ package skaro.pokeapi.resource.versiongroup;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.generation.Generation;
 import skaro.pokeapi.resource.movelearnmethod.MoveLearnMethod;
@@ -9,9 +10,9 @@ import skaro.pokeapi.resource.pokedex.Pokedex;
 import skaro.pokeapi.resource.region.Region;
 import skaro.pokeapi.resource.version.Version;
 
-public class VersionGroup {
+public class VersionGroup implements PokeApiResource {
 
-	private String id;
+	private Integer id;
 	private String name;
 	private Integer order;
 	private NamedApiResource<Generation> generation;
@@ -20,10 +21,10 @@ public class VersionGroup {
 	private List<NamedApiResource<Region>> regions;
 	private List<NamedApiResource<Version>> versions;
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

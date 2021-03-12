@@ -2,12 +2,13 @@ package skaro.pokeapi.resource.itemcategory;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.item.Item;
 import skaro.pokeapi.resource.itempocket.ItemPocket;
 
-public class ItemCategory {
+public class ItemCategory implements PokeApiResource {
 
 	private Integer id;
 	private String name;

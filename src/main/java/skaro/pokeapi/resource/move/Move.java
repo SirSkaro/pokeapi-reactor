@@ -2,6 +2,7 @@ package skaro.pokeapi.resource.move;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.ApiResource;
 import skaro.pokeapi.resource.MachineVersionDetail;
 import skaro.pokeapi.resource.Name;
@@ -16,7 +17,7 @@ import skaro.pokeapi.resource.movetarget.MoveTarget;
 import skaro.pokeapi.resource.supercontesteffect.SuperContestEffect;
 import skaro.pokeapi.resource.type.Type;
 
-public class Move {
+public class Move implements PokeApiResource {
 
 	private Integer id;
 	private String name;

@@ -2,12 +2,13 @@ package skaro.pokeapi.resource.movelearnmethod;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Description;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
 
-public class MoveLearnMethod {
+public class MoveLearnMethod implements PokeApiResource {
 
 	private Integer id;
 	private String name;

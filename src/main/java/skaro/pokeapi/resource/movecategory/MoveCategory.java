@@ -2,11 +2,12 @@ package skaro.pokeapi.resource.movecategory;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Description;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.move.Move;
 
-public class MoveCategory {
+public class MoveCategory implements PokeApiResource {
 
 	private Integer id;
 	private String name;

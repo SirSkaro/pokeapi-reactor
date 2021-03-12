@@ -2,13 +2,14 @@ package skaro.pokeapi.resource.pokedex;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Description;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.region.Region;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
 
-public class Pokedex {
+public class Pokedex implements PokeApiResource {
 
 	private Integer id;
 	private String name;

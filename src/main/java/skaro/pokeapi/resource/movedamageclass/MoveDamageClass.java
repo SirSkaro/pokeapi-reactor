@@ -2,12 +2,13 @@ package skaro.pokeapi.resource.movedamageclass;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Description;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.move.Move;
 
-public class MoveDamageClass {
+public class MoveDamageClass implements PokeApiResource {
 
 	private Integer id;
 	private String name;

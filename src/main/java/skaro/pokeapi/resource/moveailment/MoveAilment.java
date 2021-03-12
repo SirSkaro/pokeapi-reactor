@@ -2,11 +2,12 @@ package skaro.pokeapi.resource.moveailment;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.move.Move;
 
-public class MoveAilment {
+public class MoveAilment implements PokeApiResource {
 
 	private Integer id;
 	private String name;

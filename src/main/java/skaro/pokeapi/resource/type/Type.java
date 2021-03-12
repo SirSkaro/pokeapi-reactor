@@ -2,6 +2,7 @@ package skaro.pokeapi.resource.type;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.GenerationGameIndex;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
@@ -9,7 +10,7 @@ import skaro.pokeapi.resource.generation.Generation;
 import skaro.pokeapi.resource.move.Move;
 import skaro.pokeapi.resource.movedamageclass.MoveDamageClass;
 
-public class Type {
+public class Type implements PokeApiResource {
 
 	private Integer id;
 	private String name;

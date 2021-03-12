@@ -2,11 +2,12 @@ package skaro.pokeapi.resource.version;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
 
-public class Version {
+public class Version implements PokeApiResource {
 
 	private Integer id;
 	private String name;

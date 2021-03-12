@@ -2,11 +2,12 @@ package skaro.pokeapi.resource.encounterconditionvalue;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.encountercondition.EncounterCondition;
 
-public class EncounterConditionValue {
+public class EncounterConditionValue implements PokeApiResource {
 
 	private Integer id;
 	private String name;

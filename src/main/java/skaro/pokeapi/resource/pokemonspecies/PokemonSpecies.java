@@ -2,6 +2,7 @@ package skaro.pokeapi.resource.pokemonspecies;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.ApiResource;
 import skaro.pokeapi.resource.Description;
 import skaro.pokeapi.resource.FlavorText;
@@ -15,7 +16,7 @@ import skaro.pokeapi.resource.pokemoncolor.PokemonColor;
 import skaro.pokeapi.resource.pokemonhabitat.PokemonHabitat;
 import skaro.pokeapi.resource.pokemonshape.PokemonShape;
 
-public class PokemonSpecies {
+public class PokemonSpecies implements PokeApiResource {
 
 	private Integer id;
 	private String name;

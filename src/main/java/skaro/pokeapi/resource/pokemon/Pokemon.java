@@ -2,14 +2,15 @@ package skaro.pokeapi.resource.pokemon;
 
 import java.util.List;
 
+import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.VersionGameIndex;
 import skaro.pokeapi.resource.pokemonform.PokemonForm;
 import skaro.pokeapi.resource.pokemonspecies.PokemonSpecies;
 
-public class Pokemon {
+public class Pokemon implements PokeApiResource {
 
-	private String id;
+	private Integer id;
 	private String name;
 	private Integer baseExperience;
 	private Integer height;
@@ -27,10 +28,10 @@ public class Pokemon {
 	private List<PokemonStat> stats;
 	private List<PokemonType> types;
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

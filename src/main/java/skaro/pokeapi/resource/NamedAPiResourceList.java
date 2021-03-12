@@ -1,11 +1,15 @@
 package skaro.pokeapi.resource;
 
-public class NamedAPiResourceList<T> {
+import java.util.List;
+
+import skaro.pokeapi.PokeApiResource;
+
+public class NamedApiResourceList<T extends PokeApiResource> {
 
 	private Integer count;
 	private String next;
 	private Boolean previous;
-	private NamedApiResource<T> result;
+	private List<NamedApiResource<T>> results;
 	
 	public Integer getCount() {
 		return count;
@@ -25,11 +29,11 @@ public class NamedAPiResourceList<T> {
 	public void setPrevious(Boolean previous) {
 		this.previous = previous;
 	}
-	public NamedApiResource<T> getResult() {
-		return result;
+	public List<NamedApiResource<T>> getResults() {
+		return results;
 	}
-	public void setResult(NamedApiResource<T> result) {
-		this.result = result;
+	public void setResults(List<NamedApiResource<T>> results) {
+		this.results = results;
 	}
 	
 }
