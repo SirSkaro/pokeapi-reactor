@@ -1,13 +1,13 @@
 package skaro.pokeapi;
 
-import java.lang.invoke.MethodHandles;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -29,6 +29,7 @@ import reactor.netty.http.client.HttpClient;
 
 @Configuration
 @Import(PokeApiEndpointConfiguration.class)
+@EnableCaching
 public class PokeApiReactorConfiguration {
 	public static final String CONFIGURATION_PROPERTIES_PREFIX = "skaro.pokeapi";
 	public static final String POKEAPI_WEBCLIENT_BEAN = "pokeapiWebClientBean";
@@ -72,7 +73,7 @@ public class PokeApiReactorConfiguration {
 	            }).build();
 		
 		ExchangeFilterFunction logRequest = ExchangeFilterFunction.ofRequestProcessor(request -> {
-			Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+			Logger log = LoggerFactory.getLogger(PokeApiEntityFactory.class);
 			log.info("{} {}",request.method(), request.url());
 			return Mono.just(request);
 		});
@@ -87,9 +88,9 @@ public class PokeApiReactorConfiguration {
 	}
 	
 	@Bean
-	public PokeApiClient pokeApiClient(WebClient webClient, PokeApiEndpointRegistry registry) {
+	public PokeApiClient pokeApiClient(WebClient webClient, PokeApiEndpointRegistry registry, CacheManager cacheManager) {
 		PokeApiEntityFactory entityFactory = new WebClientEntityFactory(webClient, registry); 
-		return new ReactorPokeApiClient(entityFactory);
+		return new ReactiveCachingPokeApiClient(entityFactory, cacheManager);
 	}
 	
 }
