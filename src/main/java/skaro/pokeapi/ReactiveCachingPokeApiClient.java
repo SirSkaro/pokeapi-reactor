@@ -2,9 +2,12 @@ package skaro.pokeapi;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +59,14 @@ public class ReactiveCachingPokeApiClient implements PokeApiClient {
 	@Override
 	public <T extends PokeApiResource> Flux<T> followResources(Supplier<List<NamedApiResource<T>>> resourcesSupplier, Class<T> cls) {
 		return Mono.fromSupplier(resourcesSupplier)
-				.flatMapMany(resources -> entityFactory.getNamedResources(resources, cls));
+				.map(resources -> resourcesToCacheMissMap(cls, resources))
+				.flatMapMany(cacheInstructions -> getOrCacheMany(cls, cacheInstructions));
+	}
+	
+	private <T extends PokeApiResource> Map<String, Supplier<Mono<T>>> resourcesToCacheMissMap(Class<T> cls, List<NamedApiResource<T>> resources) {
+		return resources.stream()
+				.map(NamedApiResource::getName)
+				.collect(Collectors.toMap(Function.identity(), name -> () -> entityFactory.getResource(cls, name)));
 	}
 	
 	private <T extends PokeApiResource> Mono<T> getOrCache(Class<T> cls, String resourceName, Supplier<Mono<T>> onCacheMiss) {
@@ -65,6 +75,14 @@ public class ReactiveCachingPokeApiClient implements PokeApiClient {
 				.andWriteWith((key, value) -> writeToCache(cls, key, value));
 	}
 
+	private <T extends PokeApiResource> Flux<T> getOrCacheMany(Class<T> cls, Map<String, Supplier<Mono<T>>> resources) {
+		List<Mono<T>> resourceMonos = resources.entrySet().stream()
+				.map(entry -> getOrCache(cls, entry.getKey(), entry.getValue()))
+				.collect(Collectors.toList());
+		
+		return Flux.merge(resourceMonos);
+	}
+	
 	private <T extends PokeApiResource> Mono<Signal<? extends T>> checkCache(Class<T> cls, String key) {
 		String cacheName = getCacheNameForClassResource(cls);
 		Optional<Signal<? extends T>> resourceFromCache = Optional.of(cacheManager.getCache(cacheName))
@@ -74,7 +92,7 @@ public class ReactiveCachingPokeApiClient implements PokeApiClient {
 
 		return Mono.<Signal<? extends T>>justOrEmpty(resourceFromCache);
 	}
-
+	
 	private <T extends PokeApiResource> Mono<Void> writeToCache(Class<T> cls, String key, Signal<? extends T> value) {
 		String cacheName = getCacheNameForClassResource(cls);
 		Consumer<Cache> writeToCache = cache -> cache.put(key, value);
