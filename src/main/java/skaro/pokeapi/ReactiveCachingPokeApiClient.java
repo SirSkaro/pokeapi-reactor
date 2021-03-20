@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -52,8 +51,7 @@ public class ReactiveCachingPokeApiClient implements PokeApiClient {
 	@Override
 	public <T extends PokeApiResource> Mono<T> followResource(Supplier<NamedApiResource<T>> resourceSupplier, Class<T> cls) {
 		 return Mono.fromSupplier(resourceSupplier)
-				.map(NamedApiResource::getName)
-				.flatMap(name -> getOrCache(cls, name, () -> entityFactory.getResource(cls, name)));
+				.flatMap(resource -> getOrCache(cls, resource.getName(), () -> entityFactory.getNamedResource(resource, cls)));
 	}
 
 	@Override
@@ -65,8 +63,7 @@ public class ReactiveCachingPokeApiClient implements PokeApiClient {
 	
 	private <T extends PokeApiResource> Map<String, Supplier<Mono<T>>> resourcesToCacheMissMap(Class<T> cls, List<NamedApiResource<T>> resources) {
 		return resources.stream()
-				.map(NamedApiResource::getName)
-				.collect(Collectors.toMap(Function.identity(), name -> () -> entityFactory.getResource(cls, name)));
+				.collect(Collectors.toMap(NamedApiResource::getName, resource -> () -> entityFactory.getNamedResource(resource, cls)));
 	}
 	
 	private <T extends PokeApiResource> Mono<T> getOrCache(Class<T> cls, String resourceName, Supplier<Mono<T>> onCacheMiss) {
