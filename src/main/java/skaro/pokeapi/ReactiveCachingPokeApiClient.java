@@ -33,9 +33,7 @@ public class ReactiveCachingPokeApiClient implements PokeApiClient {
 
 	@Override
 	public <T extends PokeApiResource> Mono<T> getResource(Class<T> cls, String idOrName) {
-		return CacheMono.lookup(key -> checkCache(cls, key), idOrName)
-				.onCacheMissResume(() -> entityFactory.getResource(cls, idOrName))
-				.andWriteWith((key, value) -> writeToCache(cls, key, value));
+		return getOrCache(cls, idOrName, () -> entityFactory.getResource(cls, idOrName));
 	}
 
 	@Override
@@ -50,19 +48,21 @@ public class ReactiveCachingPokeApiClient implements PokeApiClient {
 
 	@Override
 	public <T extends PokeApiResource> Mono<T> followResource(Supplier<NamedApiResource<T>> resourceSupplier, Class<T> cls) {
-		return Mono.fromSupplier(resourceSupplier)
-			.flatMap(resource -> { 
-				String resourceName = resource.getName();
-				return CacheMono.lookup(key -> checkCache(cls, key), resourceName) 
-						.onCacheMissResume(() -> entityFactory.getNamedResource(resource, cls))
-						.andWriteWith((key, value) -> writeToCache(cls, key, value));
-			});
+		 return Mono.fromSupplier(resourceSupplier)
+				.map(NamedApiResource::getName)
+				.flatMap(name -> getOrCache(cls, name, () -> entityFactory.getResource(cls, name)));
 	}
 
 	@Override
 	public <T extends PokeApiResource> Flux<T> followResources(Supplier<List<NamedApiResource<T>>> resourcesSupplier, Class<T> cls) {
 		return Mono.fromSupplier(resourcesSupplier)
 				.flatMapMany(resources -> entityFactory.getNamedResources(resources, cls));
+	}
+	
+	private <T extends PokeApiResource> Mono<T> getOrCache(Class<T> cls, String resourceName, Supplier<Mono<T>> onCacheMiss) {
+		return CacheMono.lookup(key -> checkCache(cls, key), resourceName) 
+				.onCacheMissResume(() -> onCacheMiss.get())
+				.andWriteWith((key, value) -> writeToCache(cls, key, value));
 	}
 
 	private <T extends PokeApiResource> Mono<Signal<? extends T>> checkCache(Class<T> cls, String key) {
