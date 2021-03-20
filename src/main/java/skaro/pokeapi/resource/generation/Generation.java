@@ -2,9 +2,9 @@ package skaro.pokeapi.resource.generation;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.ability.Ability;
 import skaro.pokeapi.resource.move.Move;
 import skaro.pokeapi.resource.pokemonspecies.PokemonSpecies;

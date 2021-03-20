@@ -2,10 +2,10 @@ package skaro.pokeapi.resource.itemattribute;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Description;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.item.Item;
 
 public class ItemAttribute implements PokeApiResource {

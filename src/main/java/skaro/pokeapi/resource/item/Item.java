@@ -2,12 +2,12 @@ package skaro.pokeapi.resource.item;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.ApiResource;
 import skaro.pokeapi.resource.GenerationGameIndex;
 import skaro.pokeapi.resource.MachineVersionDetail;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.VerboseEffect;
 import skaro.pokeapi.resource.VersionGroupFlavorText;
 import skaro.pokeapi.resource.evolutionchain.EvolutionChain;

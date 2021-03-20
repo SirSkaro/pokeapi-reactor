@@ -2,8 +2,8 @@ package skaro.pokeapi.resource.versiongroup;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.generation.Generation;
 import skaro.pokeapi.resource.movelearnmethod.MoveLearnMethod;
 import skaro.pokeapi.resource.pokedex.Pokedex;

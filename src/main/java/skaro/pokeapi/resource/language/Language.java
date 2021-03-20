@@ -2,8 +2,8 @@ package skaro.pokeapi.resource.language;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Name;
+import skaro.pokeapi.resource.PokeApiResource;
 
 public class Language implements PokeApiResource {
 

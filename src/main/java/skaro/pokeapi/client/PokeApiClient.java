@@ -1,4 +1,4 @@
-package skaro.pokeapi;
+package skaro.pokeapi.client;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono;
 import skaro.pokeapi.query.PageQuery;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.NamedApiResourceList;
+import skaro.pokeapi.resource.PokeApiResource;
 
 public interface PokeApiClient {
 	

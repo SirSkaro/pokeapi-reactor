@@ -1,4 +1,4 @@
-package skaro.pokeapi;
+package skaro.pokeapi.client;
 
 import java.net.URI;
 import java.util.List;
@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
 import skaro.pokeapi.query.PageQuery;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.NamedApiResourceList;
+import skaro.pokeapi.resource.PokeApiResource;
 
 public class WebClientEntityFactory implements PokeApiEntityFactory {
 	private WebClient webClient;

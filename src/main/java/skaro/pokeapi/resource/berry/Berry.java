@@ -2,8 +2,8 @@ package skaro.pokeapi.resource.berry;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.berryfirmness.BerryFirmness;
 import skaro.pokeapi.resource.item.Item;
 import skaro.pokeapi.resource.type.Type;

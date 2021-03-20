@@ -1,7 +1,9 @@
-package skaro.pokeapi;
+package skaro.pokeapi.client;
 
 import java.util.Collections;
 import java.util.Map;
+
+import skaro.pokeapi.resource.PokeApiResource;
 
 public class MapEndpointRegistry implements PokeApiEndpointRegistry {
 

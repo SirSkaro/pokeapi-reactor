@@ -2,8 +2,6 @@ package skaro.pokeapi.resource;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
-
 public class NamedApiResourceList<T extends PokeApiResource> {
 
 	private Integer count;

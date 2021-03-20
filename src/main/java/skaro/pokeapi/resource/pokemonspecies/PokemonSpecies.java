@@ -2,12 +2,12 @@ package skaro.pokeapi.resource.pokemonspecies;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.ApiResource;
 import skaro.pokeapi.resource.Description;
 import skaro.pokeapi.resource.FlavorText;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.egggroup.EggGroup;
 import skaro.pokeapi.resource.evolutionchain.EvolutionChain;
 import skaro.pokeapi.resource.generation.Generation;

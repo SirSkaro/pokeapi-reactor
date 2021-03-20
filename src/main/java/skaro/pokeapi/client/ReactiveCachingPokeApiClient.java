@@ -1,4 +1,4 @@
-package skaro.pokeapi;
+package skaro.pokeapi.client;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
@@ -21,9 +21,10 @@ import reactor.core.publisher.Signal;
 import skaro.pokeapi.query.PageQuery;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.NamedApiResourceList;
+import skaro.pokeapi.resource.PokeApiResource;
 
 public class ReactiveCachingPokeApiClient implements PokeApiClient {
-	Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	private Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private PokeApiEntityFactory entityFactory;	
 	private CacheManager cacheManager;

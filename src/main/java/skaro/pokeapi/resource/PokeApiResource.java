@@ -1,4 +1,4 @@
-package skaro.pokeapi;
+package skaro.pokeapi.resource;
 
 public interface PokeApiResource {
 

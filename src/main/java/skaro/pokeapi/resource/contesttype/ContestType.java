@@ -2,8 +2,8 @@ package skaro.pokeapi.resource.contesttype;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.berryflavor.BerryFlavor;
 
 public class ContestType implements PokeApiResource {

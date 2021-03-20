@@ -2,8 +2,8 @@ package skaro.pokeapi.resource.pokemon;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.VersionGameIndex;
 import skaro.pokeapi.resource.pokemonform.PokemonForm;
 import skaro.pokeapi.resource.pokemonspecies.PokemonSpecies;

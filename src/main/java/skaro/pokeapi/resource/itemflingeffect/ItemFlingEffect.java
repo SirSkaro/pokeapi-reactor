@@ -2,9 +2,9 @@ package skaro.pokeapi.resource.itemflingeffect;
 
 import java.util.List;
 
-import skaro.pokeapi.PokeApiResource;
 import skaro.pokeapi.resource.Effect;
 import skaro.pokeapi.resource.NamedApiResource;
+import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.item.Item;
 
 public class ItemFlingEffect implements PokeApiResource {

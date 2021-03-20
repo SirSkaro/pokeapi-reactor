@@ -1,4 +1,6 @@
-package skaro.pokeapi;
+package skaro.pokeapi.client;
+
+import skaro.pokeapi.resource.PokeApiResource;
 
 public interface PokeApiEndpointRegistry {
 	

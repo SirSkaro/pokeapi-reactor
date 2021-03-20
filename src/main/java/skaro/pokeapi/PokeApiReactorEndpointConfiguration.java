@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import skaro.pokeapi.client.MapEndpointRegistry;
+import skaro.pokeapi.client.PokeApiEndpointRegistry;
 import skaro.pokeapi.resource.ability.Ability;
 import skaro.pokeapi.resource.berry.Berry;
 import skaro.pokeapi.resource.berryfirmness.BerryFirmness;
@@ -53,7 +55,7 @@ import skaro.pokeapi.resource.version.Version;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
 
 @Configuration
-public class PokeApiEndpointConfiguration {
+public class PokeApiReactorEndpointConfiguration {
 
 	@Bean
 	public PokeApiEndpointRegistry endpointRegistry() {

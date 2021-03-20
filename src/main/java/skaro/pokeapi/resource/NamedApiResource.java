@@ -1,7 +1,5 @@
 package skaro.pokeapi.resource;
 
-import skaro.pokeapi.PokeApiResource;
-
 public class NamedApiResource<T extends PokeApiResource> {
 
 	private String name;
