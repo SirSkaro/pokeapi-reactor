@@ -100,7 +100,7 @@ public class ReactiveCachingPokeApiClient implements PokeApiClient {
 
 		return Mono.fromRunnable(() -> {
 			Optional.ofNullable(cacheManager.getCache(cacheName))
-			.ifPresentOrElse(writeToCache, logCacheFailure);
+				.ifPresentOrElse(writeToCache, logCacheFailure);
 		});
 	}
 
