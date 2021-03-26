@@ -45,7 +45,7 @@ public class ReactiveCacheManagerCacheFacade implements CacheFacade {
 	
 	private <T extends PokeApiResource> Mono<T> getOrCache(Class<T> cls, String resourceName, Supplier<Mono<T>> onCacheMiss) {
 		return CacheMono.lookup(key -> checkCache(cls, key), resourceName) 
-				.onCacheMissResume(() -> onCacheMiss.get())
+				.onCacheMissResume(onCacheMiss)
 				.andWriteWith((key, value) -> writeToCache(cls, key, value));
 	}
 	
