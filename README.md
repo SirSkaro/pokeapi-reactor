@@ -30,6 +30,7 @@ Both the `PokeApiReactorCachingConfiguration` and `PokeApiReactorNonCachingConfi
 ### Fetching a resource
 Inject the registered `PokeApiClient` into your class and request a resource.
 ```java
+@Autowired
 private PokeApiClient pokeApiClient;
 
 ...
@@ -46,5 +47,31 @@ public void printPokemon() {
    Pokemon pokemon = pokeApiClient.getResource(Pokemon.class, "pikachu").block();
    String pokemonInfo = String.format("%s has %d forms", pokemon.getName(), pokemon.getForms().size()));
    System.out.println(pokemonInfo);
+}
+```
+
+### Following a resource
+Following links to other resources also has first-class support.
+
+```java
+public void printPokemonForms() {
+   pokeApiClient.getResource(Pokemon.class, "pikachu")
+      .flatMapMany(pokemon -> pokeApiClient.followResources(pokemon::getForms, PokemonForm.class))
+      .map(form -> String.format("Pikachu has a form called %s", form.getName()))
+      .subscribe(System.out::println);
+}
+```
+Again, with blocking:
+```java
+public void printPokemonForms() {
+   Pokemon pokemon = pokeApiClient.getResource(Pokemon.class, "pikachu").block();
+   List<PokemonForm> forms = pokeApiClient.followResources(pokemon::getForms, PokemonForm.class)
+      .collectList()
+      .block();
+
+   for(PokemonForm form : forms) {
+      String formInfo = String.format("Pikachu has a form called %s", form.getName());
+      System.out.println(formInfo);
+   }
 }
 ```
