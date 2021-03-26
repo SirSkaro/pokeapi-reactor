@@ -20,7 +20,7 @@ public class CacheSpec<T> {
 		return monoSupplier;
 	}
 	
-	public static <T> CacheSpecBuilder<T> of(Class<T> type, String key) {
+	public static <T> CacheSpecBuilder<T> get(Class<T> type, String key) {
 		CacheSpecBuilder<T> builder = new CacheSpecBuilder<>();
 		builder.spec = new CacheSpec<>();
 		builder.spec.key = key;

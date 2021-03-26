@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import skaro.pokeapi.cache.CacheFacade;
+import skaro.pokeapi.cache.ReactiveCacheManagerCacheFacade;
 import skaro.pokeapi.client.PokeApiClient;
 import skaro.pokeapi.client.PokeApiEntityFactory;
 import skaro.pokeapi.client.ReactiveCachingPokeApiClient;
@@ -14,8 +16,13 @@ import skaro.pokeapi.client.ReactiveCachingPokeApiClient;
 public class PokeApiReactorCachingConfiguration {
 
 	@Bean
-	public PokeApiClient pokeApiClient(PokeApiEntityFactory entityFactory, CacheManager cacheManager) {
-		return new ReactiveCachingPokeApiClient(entityFactory, cacheManager);
+	public CacheFacade cacheFacade(CacheManager cacheManager) {
+		return new ReactiveCacheManagerCacheFacade(cacheManager);
+	}
+	
+	@Bean
+	public PokeApiClient pokeApiClient(PokeApiEntityFactory entityFactory, CacheFacade cacheFacade) {
+		return new ReactiveCachingPokeApiClient(entityFactory, cacheFacade);
 	}
 	
 }

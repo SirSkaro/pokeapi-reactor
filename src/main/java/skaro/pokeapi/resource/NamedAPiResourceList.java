@@ -2,7 +2,9 @@ package skaro.pokeapi.resource;
 
 import java.util.List;
 
-public class NamedApiResourceList<T extends PokeApiResource> {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+public class NamedApiResourceList<T extends PokeApiResource> implements PokeApiResource {
 
 	private Integer count;
 	private String next;
@@ -32,6 +34,17 @@ public class NamedApiResourceList<T extends PokeApiResource> {
 	}
 	public void setResults(List<NamedApiResource<T>> results) {
 		this.results = results;
+	}
+	
+	@Override
+	@JsonIgnore
+	public Integer getId() {
+		return 0;
+	}
+	@Override
+	@JsonIgnore
+	public String getName() {
+		return "";
 	}
 	
 }
