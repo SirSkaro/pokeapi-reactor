@@ -9,6 +9,16 @@ A non-blocking, reactive API client for [PokeAPI](https://pokeapi.co/) with cach
 
 ## Getting started
 ### Project Configuration
+
+#### Properties
+You can (must) configure the location of the PokeAPI instance you want to use. Add the following property to your `application.properties`:
+
+```
+skaro.pokeapi.base-uri=https://pokeapi.co/api/v2/ #or the url of your own instance
+```
+
+#### Application Context
+
 ```java
 @Configuration
 @Import(PokeApiReactorCachingConfiguration.class)
