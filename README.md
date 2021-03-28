@@ -18,21 +18,28 @@ skaro.pokeapi.base-uri=https://pokeapi.co/api/v2/ #or the url of your own instan
 ```
 
 #### Application Context
+Import one of pokeapi-reactor's configurations as well as specify your own [reactor.netty.http.client.HttpClient](https://projectreactor.io/docs/netty/release/api/reactor/netty/http/client/HttpClient.html) bean. Two configurations are available: caching and non-caching. Below is an example of a caching configuration.
 
 ```java
 @Configuration
 @Import(PokeApiReactorCachingConfiguration.class)
 @EnableCaching
 public class MyPokeApiReactorCachingConfiguration {
-
+	@Bean
+	public HttpClient httpClient() {
+		return HttpClient.create()
+                  .compress(true)
+                  .resolver(DefaultAddressResolverGroup.INSTANCE);
+	}
 }
 ```
-Or, if you rather not enable caching:
+Or, if you'd rather not enable caching:
 ```java
 @Configuration
 @Import(PokeApiReactorNonCachingConfiguration.class)
 public class MyPokeApiReactorNonCachingConfiguration {
-
+   @Bean
+	public HttpClient httpClient() { ... }
 }
 ```
 Both the `PokeApiReactorCachingConfiguration` and `PokeApiReactorNonCachingConfiguration` will register the appropriate `PokeApiClient` bean.
