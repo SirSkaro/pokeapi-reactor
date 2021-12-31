@@ -201,6 +201,8 @@ public class WebClientEntityFactoryTest {
 			.expectComplete()
 			.verify();
 		
+		Thread.sleep(50);
+		
 		String expectedEndpoint1 = String.format("/%s/%s", namedResourceEndpoint, stat1.getName());
 		RecordedRequest recordedRequest1 = mockPokeApiServer.takeRequest();
 		assertEquals(HttpMethod.GET.toString(), recordedRequest1.getMethod());
