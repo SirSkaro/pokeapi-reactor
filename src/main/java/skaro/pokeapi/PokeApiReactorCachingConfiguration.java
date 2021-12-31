@@ -14,8 +14,9 @@ import skaro.pokeapi.client.ReactiveCachingPokeApiClient;
 @Configuration
 @Import(PokeApiReactorBaseConfiguration.class)
 public class PokeApiReactorCachingConfiguration {
-
-	@Bean
+	public static final String CACHE_FACADE_BEAN = "pokeApiReactorCacheFacade";
+	
+	@Bean(CACHE_FACADE_BEAN)
 	public CacheFacade cacheFacade(CacheManager cacheManager) {
 		return new ReactiveCacheManagerCacheFacade(cacheManager);
 	}
