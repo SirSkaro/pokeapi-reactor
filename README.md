@@ -92,3 +92,52 @@ public void printPokemonForms() {
    }
 }
 ```
+
+### Maven Configuration
+The latest release can be pulled from GitHub's Apache Maven repository. To pull from their repository, you must add your GitHub credentials to your [settings.xml](https://maven.apache.org/settings.html) (located in `${user.home}/.m2/settings.xml`). You can read [GitHub's artical about how to do that](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry). But for impatient programmer's, below is yet another guide to configure Maven to pull from GitHub that holds your hand a little more closely - I always appreciate it when people do that.
+
+
+#### Generate a token
+[Generate a PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (Personal Access Token) with the `read:packages` privilege.
+
+#### Add \<server\> and \<repository\> tags in settings.xml 
+Configure Maven to [authenticate when trying to pull from GitHub's Apache Maven repoistory](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token). If you don't have a settings.xml, create it under your .m2 directory. It should look something like this.
+
+```xml
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <activeProfiles>
+    <activeProfile>github</activeProfile>
+  </activeProfiles>
+
+  <profiles>
+    <profile>
+      <id>github</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+          <id>github-skaro-pokeapi-reactor</id>
+          <url>https://maven.pkg.github.com/SirSkaro/pokeapi-reactor</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+  <servers>
+    <server>
+      <id>github-skaro-pokeapi-reactor</id>
+      <username>YOUR USERNAME</username>
+      <password>YOUR TOKEN YOU JUST CREATED</password>
+    </server>
+  </servers>
+</settings>
+```
+
+
+
