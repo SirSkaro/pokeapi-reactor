@@ -1,4 +1,5 @@
-[![Publish package to GitHub Packages](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml/badge.svg?branch=test)](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml)
+[![Publish package to GitHub Packages](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml/badge.svg?branch=test)](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # pokeapi-reactor
 A non-blocking, reactive API client for [PokeAPI](https://pokeapi.co/) with caching for Spring Boot projects.
