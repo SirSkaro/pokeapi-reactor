@@ -1,3 +1,5 @@
+[![Publish package to GitHub Packages](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml/badge.svg?branch=test)](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml)
+
 # pokeapi-reactor
 A non-blocking, reactive API client for [PokeAPI](https://pokeapi.co/) with caching for Spring Boot projects.
 
