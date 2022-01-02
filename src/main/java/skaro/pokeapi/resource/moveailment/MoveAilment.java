@@ -6,8 +6,9 @@ import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.move.Move;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class MoveAilment implements PokeApiResource {
+public class MoveAilment implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

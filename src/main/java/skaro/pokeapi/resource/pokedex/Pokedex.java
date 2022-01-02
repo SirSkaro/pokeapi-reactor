@@ -8,8 +8,9 @@ import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.region.Region;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class Pokedex implements PokeApiResource {
+public class Pokedex implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

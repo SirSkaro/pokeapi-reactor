@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>skaro.pokeapi</groupId>
 	<artifactId>pokeapi-reactor</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<name>pokeapi-reactor</name>
 	<description>Non-blocking, reactive API client for PokeAPI</description>
 	<properties>
@@ -72,9 +72,35 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
+				<configuration>
+					<excludes>
+						<exclude>**/*Configuration.class</exclude> <!-- Exclude @Configuration classes -->
+						<exclude>**/*Properties.class</exclude> <!-- Exclude properties classes -->
+						<exclude>skaro/pokeapi/resource/**/*</exclude> <!-- Exclude POJOs -->
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>generate-code-coverage-report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-	
+
 	<distributionManagement>
 		<repository>
 			<id>github</id>

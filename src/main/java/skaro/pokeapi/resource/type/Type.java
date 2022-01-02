@@ -9,8 +9,9 @@ import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.generation.Generation;
 import skaro.pokeapi.resource.move.Move;
 import skaro.pokeapi.resource.movedamageclass.MoveDamageClass;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class Type implements PokeApiResource {
+public class Type implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

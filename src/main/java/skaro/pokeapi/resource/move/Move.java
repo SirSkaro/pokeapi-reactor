@@ -16,8 +16,9 @@ import skaro.pokeapi.resource.movedamageclass.MoveDamageClass;
 import skaro.pokeapi.resource.movetarget.MoveTarget;
 import skaro.pokeapi.resource.supercontesteffect.SuperContestEffect;
 import skaro.pokeapi.resource.type.Type;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class Move implements PokeApiResource {
+public class Move implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

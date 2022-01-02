@@ -7,8 +7,9 @@ import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.VerboseEffect;
 import skaro.pokeapi.resource.generation.Generation;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class Ability implements PokeApiResource {
+public class Ability implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

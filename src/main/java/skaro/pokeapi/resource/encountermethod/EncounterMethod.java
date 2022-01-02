@@ -4,8 +4,9 @@ import java.util.List;
 
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.PokeApiResource;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class EncounterMethod implements PokeApiResource {
+public class EncounterMethod implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

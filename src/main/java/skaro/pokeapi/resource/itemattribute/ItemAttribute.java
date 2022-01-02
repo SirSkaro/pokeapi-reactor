@@ -7,8 +7,9 @@ import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.item.Item;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class ItemAttribute implements PokeApiResource {
+public class ItemAttribute implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

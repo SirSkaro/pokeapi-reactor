@@ -6,8 +6,9 @@ import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.encounterconditionvalue.EncounterConditionValue;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class EncounterCondition implements PokeApiResource {
+public class EncounterCondition implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

@@ -1,4 +1,4 @@
-name: Publish package to GitHub Packages
+name: CD Pipeline
 on:
   release:
     types: [created]
@@ -15,6 +15,10 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Publish package
-        run: mvn clean --batch-mode deploy
+        run: mvn clean --batch-mode test deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          generate-branches-badge: true

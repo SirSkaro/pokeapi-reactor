@@ -5,7 +5,6 @@ import java.util.List;
 import skaro.pokeapi.resource.ApiResource;
 import skaro.pokeapi.resource.Description;
 import skaro.pokeapi.resource.FlavorText;
-import skaro.pokeapi.resource.Localizable;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
@@ -16,6 +15,7 @@ import skaro.pokeapi.resource.growthrate.GrowthRate;
 import skaro.pokeapi.resource.pokemoncolor.PokemonColor;
 import skaro.pokeapi.resource.pokemonhabitat.PokemonHabitat;
 import skaro.pokeapi.resource.pokemonshape.PokemonShape;
+import skaro.pokeapi.utils.locale.Localizable;
 
 public class PokemonSpecies implements PokeApiResource, Localizable {
 

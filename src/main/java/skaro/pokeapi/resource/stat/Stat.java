@@ -3,12 +3,12 @@ package skaro.pokeapi.resource.stat;
 import java.util.List;
 
 import skaro.pokeapi.resource.ApiResource;
-import skaro.pokeapi.resource.Localizable;
 import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.characteristic.Characteristic;
 import skaro.pokeapi.resource.movedamageclass.MoveDamageClass;
+import skaro.pokeapi.utils.locale.Localizable;
 
 public class Stat implements PokeApiResource, Localizable {
 

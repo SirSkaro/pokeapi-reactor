@@ -8,8 +8,9 @@ import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.locationarea.LocationArea;
 import skaro.pokeapi.resource.region.Region;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class Location implements PokeApiResource {
+public class Location implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

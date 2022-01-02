@@ -6,8 +6,9 @@ import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class Version implements PokeApiResource {
+public class Version implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

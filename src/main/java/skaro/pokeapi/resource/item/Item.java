@@ -14,8 +14,9 @@ import skaro.pokeapi.resource.evolutionchain.EvolutionChain;
 import skaro.pokeapi.resource.itemattribute.ItemAttribute;
 import skaro.pokeapi.resource.itemcategory.ItemCategory;
 import skaro.pokeapi.resource.itemflingeffect.ItemFlingEffect;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class Item implements PokeApiResource {
+public class Item implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

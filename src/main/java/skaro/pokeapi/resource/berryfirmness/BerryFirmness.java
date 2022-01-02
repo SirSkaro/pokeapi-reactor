@@ -6,8 +6,9 @@ import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.berry.Berry;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class BerryFirmness implements PokeApiResource {
+public class BerryFirmness implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

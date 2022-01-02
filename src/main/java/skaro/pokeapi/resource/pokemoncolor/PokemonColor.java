@@ -6,8 +6,9 @@ import skaro.pokeapi.resource.Name;
 import skaro.pokeapi.resource.NamedApiResource;
 import skaro.pokeapi.resource.PokeApiResource;
 import skaro.pokeapi.resource.pokemonspecies.PokemonSpecies;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class PokemonColor implements PokeApiResource {
+public class PokemonColor implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

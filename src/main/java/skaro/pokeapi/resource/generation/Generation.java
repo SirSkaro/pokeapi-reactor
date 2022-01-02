@@ -10,8 +10,9 @@ import skaro.pokeapi.resource.move.Move;
 import skaro.pokeapi.resource.pokemonspecies.PokemonSpecies;
 import skaro.pokeapi.resource.type.Type;
 import skaro.pokeapi.resource.versiongroup.VersionGroup;
+import skaro.pokeapi.utils.locale.Localizable;
 
-public class Generation implements PokeApiResource {
+public class Generation implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;

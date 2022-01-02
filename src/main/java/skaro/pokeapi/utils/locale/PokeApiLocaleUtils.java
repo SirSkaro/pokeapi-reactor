@@ -1,6 +1,8 @@
-package skaro.pokeapi.resource;
+package skaro.pokeapi.utils.locale;
 
 import java.util.Optional;
+
+import skaro.pokeapi.resource.Name;
 
 public class PokeApiLocaleUtils {
 
