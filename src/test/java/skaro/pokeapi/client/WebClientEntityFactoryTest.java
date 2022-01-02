@@ -4,13 +4,13 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,21 +39,21 @@ import skaro.pokeapi.resource.stat.Stat;
 @ExtendWith(SpringExtension.class)
 public class WebClientEntityFactoryTest {
 
-	private static MockWebServer mockPokeApiServer;
+	private MockWebServer mockPokeApiServer;
 	private PokeApiEndpointRegistry registry;
 	private WebClient webClient;
 	private ObjectMapper objectMapper;
 	
 	private WebClientEntityFactory factory;
 	
-	@BeforeAll
-	public static void startMockPokeApiServer() throws IOException {
+	@BeforeEach
+	public void startMockPokeApiServer() throws IOException {
 		mockPokeApiServer = new MockWebServer();
 		mockPokeApiServer.start();
 	}
 	
-	@AfterAll
-    static void tearDown() throws IOException {
+	@AfterEach
+    public void tearDown() throws IOException {
 		mockPokeApiServer.shutdown();
     }
 	
@@ -186,6 +186,7 @@ public class WebClientEntityFactoryTest {
 		stat1.setName("attack");
 		Stat stat2 = new Stat();
 		stat2.setName("defense");
+		Set<String> resourceIds = new HashSet<>(Set.of(stat1.getName(), stat2.getName()));
 		
 		NamedApiResource<Stat> namedResource1 = new NamedApiResource<>();
 		namedResource1.setUrl(String.format("%s/%s/%s", getMockPokeApiServerBaseUrl(), namedResourceEndpoint, stat1.getName()));
@@ -196,22 +197,21 @@ public class WebClientEntityFactoryTest {
 		mockPokeApiServer.enqueue(createMockResponseWithBody(stat2));
 		
 		StepVerifier.create(factory.getNamedResources(List.of(namedResource1, namedResource2), Stat.class))
-			.expectNextMatches(resource -> stat1.getName().equals(resource.getName()))
-			.expectNextMatches(resource -> stat2.getName().equals(resource.getName()))
+			.expectNextMatches(resource -> resourceIds.remove(resource.getName()))
+			.expectNextMatches(resource -> resourceIds.remove(resource.getName()))
 			.expectComplete()
 			.verify();
 		
-		Thread.sleep(50);
+		Set<String> expectedEndpoints = new HashSet<>(Set.of(
+			String.format("/%s/%s", namedResourceEndpoint, stat1.getName()),
+			String.format("/%s/%s", namedResourceEndpoint, stat2.getName())
+		));
 		
-		String expectedEndpoint1 = String.format("/%s/%s", namedResourceEndpoint, stat1.getName());
-		RecordedRequest recordedRequest1 = mockPokeApiServer.takeRequest();
-		assertEquals(HttpMethod.GET.toString(), recordedRequest1.getMethod());
-		assertEquals(expectedEndpoint1, recordedRequest1.getPath());
-		
-		String expectedEndpoint2 = String.format("/%s/%s", namedResourceEndpoint, stat2.getName());
-		RecordedRequest recordedRequest2 = mockPokeApiServer.takeRequest();
-		assertEquals(HttpMethod.GET.toString(), recordedRequest2.getMethod());
-		assertEquals(expectedEndpoint2, recordedRequest2.getPath());
+		for(int i = 0; i < expectedEndpoints.size(); i++) {
+			RecordedRequest recordedRequest = mockPokeApiServer.takeRequest();
+			assertEquals(HttpMethod.GET.toString(), recordedRequest.getMethod());
+			assertTrue(expectedEndpoints.remove(recordedRequest.getPath()));
+		}
 	}
 	
 	private String getMockPokeApiServerBaseUrl() {
