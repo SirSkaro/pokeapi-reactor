@@ -1,4 +1,4 @@
-[![CD Pipeline](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml) 
+[![CD Pipeline](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml/badge.svg?branch=v1.0.2)](https://github.com/SirSkaro/pokeapi-reactor/actions/workflows/maven-publish.yml)
 ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
