@@ -7,14 +7,14 @@ import skaro.pokeapi.resource.move.Move;
 
 public class PokemonMove {
 
-	private NamedApiResource<Move> moves;
+	private NamedApiResource<Move> move;
 	private List<PokemonMoveVersion> versionGroupDetails;
 	
-	public NamedApiResource<Move> getMoves() {
-		return moves;
+	public NamedApiResource<Move> getMove() {
+		return move;
 	}
-	public void setMoves(NamedApiResource<Move> moves) {
-		this.moves = moves;
+	public void setMove(NamedApiResource<Move> move) {
+		this.move = move;
 	}
 	public List<PokemonMoveVersion> getVersionGroupDetails() {
 		return versionGroupDetails;
