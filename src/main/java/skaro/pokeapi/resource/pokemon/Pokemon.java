@@ -27,6 +27,7 @@ public class Pokemon implements PokeApiResource {
 	private NamedApiResource<PokemonSpecies> species;
 	private List<PokemonStat> stats;
 	private List<PokemonType> types;
+	private List<PokemonTypePast> pastTypes;
 	
 	public Integer getId() {
 		return id;
@@ -130,5 +131,10 @@ public class Pokemon implements PokeApiResource {
 	public void setTypes(List<PokemonType> types) {
 		this.types = types;
 	}
-	
+	public List<PokemonTypePast> getPastTypes() {
+		return pastTypes;
+	}
+	public void setPastTypes(List<PokemonTypePast> pastTypes) {
+		this.pastTypes = pastTypes;
+	}
 }
