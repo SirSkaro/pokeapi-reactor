@@ -16,7 +16,7 @@ public class Generation implements PokeApiResource, Localizable {
 
 	private Integer id;
 	private String name;
-	private NamedApiResource<Ability> abilities;
+	private List<NamedApiResource<Ability>> abilities;
 	private List<Name> names;
 	private List<NamedApiResource<Move>> moves;
 	private List<NamedApiResource<PokemonSpecies>> pokemonSpecies;
@@ -35,10 +35,10 @@ public class Generation implements PokeApiResource, Localizable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public NamedApiResource<Ability> getAbilities() {
+	public List<NamedApiResource<Ability>> getAbilities() {
 		return abilities;
 	}
-	public void setAbilities(NamedApiResource<Ability> abilities) {
+	public void setAbilities(List<NamedApiResource<Ability>> abilities) {
 		this.abilities = abilities;
 	}
 	public List<Name> getNames() {
