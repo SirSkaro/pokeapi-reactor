@@ -16,6 +16,7 @@ public class Type implements PokeApiResource, Localizable {
 	private Integer id;
 	private String name;
 	private TypeRelations damageRelations;
+	private TypeRelationsPast pastDamageRelations;
 	private List<GenerationGameIndex> gameIndices;
 	private NamedApiResource<Generation> generation;
 	private NamedApiResource<MoveDamageClass> moveDamageClass;
@@ -40,6 +41,12 @@ public class Type implements PokeApiResource, Localizable {
 	}
 	public void setDamageRelations(TypeRelations damageRelations) {
 		this.damageRelations = damageRelations;
+	}
+	public TypeRelationsPast getPastDamageRelations() {
+		return pastDamageRelations;
+	}
+	public void setPastDamageRelations(TypeRelationsPast pastDamageRelations) {
+		this.pastDamageRelations = pastDamageRelations;
 	}
 	public List<GenerationGameIndex> getGameIndices() {
 		return gameIndices;
