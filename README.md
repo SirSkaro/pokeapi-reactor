@@ -23,7 +23,7 @@ skaro.pokeapi.base-uri=https://pokeapi.co/api/v2/ #or the url of your own instan
 ```
 
 #### Application Context
-Import one of pokeapi-reactor's configurations as well as specify your own [reactor.netty.http.client.HttpClient](https://projectreactor.io/docs/netty/release/api/reactor/netty/http/client/HttpClient.html) bean. Two configurations are available: caching and non-caching. Below is an example of a caching configuration.
+Import one of pokeapi-reactor's configurations as well as specify your own [reactor.netty.http.client.HttpClient](https://projectreactor.io/docs/netty/release/api/reactor/netty/http/client/HttpClient.html) bean. Two configurations are available: caching and non-caching. Below is an example of a caching configuration which uses a flexible `HttpClient` tuned for high parallel throughput.
 
 ```java
 @Configuration
@@ -31,8 +31,17 @@ Import one of pokeapi-reactor's configurations as well as specify your own [reac
 @EnableCaching
 public class MyPokeApiReactorCachingConfiguration {
 	@Bean
-	public HttpClient httpClient() {
-		return HttpClient.create()
+	public ConnectionProvider connectionProvider() {
+	    return ConnectionProvider.builder("Auto refresh & no connection limit")
+		    .maxIdleTime(Duration.ofSeconds(10))
+		    .maxConnections(500)
+		    .pendingAcquireMaxCount(-1)
+		    .build();
+	}
+
+	@Bean
+	public HttpClient httpClient(ConnectionProvider connectionProvider) {
+		return HttpClient.create(connectionProvider)
                   .compress(true)
                   .resolver(DefaultAddressResolverGroup.INSTANCE);
 	}
@@ -43,8 +52,11 @@ Or, if you'd rather not enable caching:
 @Configuration
 @Import(PokeApiReactorNonCachingConfiguration.class)
 public class MyPokeApiReactorNonCachingConfiguration {
-   @Bean
-	public HttpClient httpClient() { ... }
+	@Bean
+	public ConnectionProvider connectionProvider() { ... }
+	
+	@Bean
+	public HttpClient httpClient(ConnectionProvider connectionProvider) { ... }
 }
 ```
 Both the `PokeApiReactorCachingConfiguration` and `PokeApiReactorNonCachingConfiguration` will register the appropriate `PokeApiClient` bean.
