@@ -92,7 +92,7 @@ public class PokeApiReactorEndpointConfiguration {
 		endpoints.put(MoveLearnMethod.class, "move-learn-method");
 		endpoints.put(MoveTarget.class, "move-target");
 		endpoints.put(Nature.class, "nature");
-		endpoints.put(Pokedex.class, "pokdex");
+		endpoints.put(Pokedex.class, "pokedex");
 		endpoints.put(Pokemon.class, "pokemon");
 		endpoints.put(PokemonColor.class, "pokemon-color");
 		endpoints.put(PokemonForm.class, "pokemon-form");

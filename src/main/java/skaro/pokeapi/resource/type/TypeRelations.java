@@ -9,9 +9,9 @@ public class TypeRelations {
 	private List<NamedApiResource<Type>> noDamageTo;
 	private List<NamedApiResource<Type>> halfDamageTo;
 	private List<NamedApiResource<Type>> doubleDamageTo;
-	private List<NamedApiResource<Type>> noDamagefrom;
-	private List<NamedApiResource<Type>> halfDamagefrom;
-	private List<NamedApiResource<Type>> doubleDamagefrom;
+	private List<NamedApiResource<Type>> noDamageFrom;
+	private List<NamedApiResource<Type>> halfDamageFrom;
+	private List<NamedApiResource<Type>> doubleDamageFrom;
 	
 	public List<NamedApiResource<Type>> getNoDamageTo() {
 		return noDamageTo;
@@ -31,23 +31,23 @@ public class TypeRelations {
 	public void setDoubleDamageTo(List<NamedApiResource<Type>> doubleDamageTo) {
 		this.doubleDamageTo = doubleDamageTo;
 	}
-	public List<NamedApiResource<Type>> getNoDamagefrom() {
-		return noDamagefrom;
+	public List<NamedApiResource<Type>> getNoDamageFrom() {
+		return noDamageFrom;
 	}
-	public void setNoDamagefrom(List<NamedApiResource<Type>> noDamagefrom) {
-		this.noDamagefrom = noDamagefrom;
+	public void setNoDamageFrom(List<NamedApiResource<Type>> noDamageFrom) {
+		this.noDamageFrom = noDamageFrom;
 	}
-	public List<NamedApiResource<Type>> getHalfDamagefrom() {
-		return halfDamagefrom;
+	public List<NamedApiResource<Type>> getHalfDamageFrom() {
+		return halfDamageFrom;
 	}
-	public void setHalfDamagefrom(List<NamedApiResource<Type>> halfDamagefrom) {
-		this.halfDamagefrom = halfDamagefrom;
+	public void setHalfDamageFrom(List<NamedApiResource<Type>> halfDamageFrom) {
+		this.halfDamageFrom = halfDamageFrom;
 	}
-	public List<NamedApiResource<Type>> getDoubleDamagefrom() {
-		return doubleDamagefrom;
+	public List<NamedApiResource<Type>> getDoubleDamageFrom() {
+		return doubleDamageFrom;
 	}
-	public void setDoubleDamagefrom(List<NamedApiResource<Type>> doubleDamagefrom) {
-		this.doubleDamagefrom = doubleDamagefrom;
+	public void setDoubleDamageFrom(List<NamedApiResource<Type>> doubleDamageFrom) {
+		this.doubleDamageFrom = doubleDamageFrom;
 	}
 	
 }
