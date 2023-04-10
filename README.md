@@ -22,6 +22,13 @@ You can (must) configure the location of the PokeAPI instance you want to use. A
 skaro.pokeapi.base-uri=https://pokeapi.co/api/v2/ #or the url of your own instance
 ```
 
+You may also configure the max buffer size for the WebClient, which is used to fetch resources from PokeAPI.
+Its default value is 565000 bytes, while the API request for "/pokemon/mew" can grow over the time, you may want to increase it yourself to a higher value.
+To achieve this, add the following property to your `application.properties`:
+```
+skaro.pokeapi.max-buffer-size=565000
+```
+
 #### Application Context
 Import one of pokeapi-reactor's configurations as well as specify your own [reactor.netty.http.client.HttpClient](https://projectreactor.io/docs/netty/release/api/reactor/netty/http/client/HttpClient.html) bean. Two configurations are available: caching and non-caching. Below is an example of a caching configuration which uses a flexible `HttpClient` tuned for high parallel throughput.
 
