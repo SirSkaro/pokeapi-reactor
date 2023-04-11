@@ -8,7 +8,7 @@ public class PokeApiConfigurationProperties {
 
 	@NotNull
 	private URI baseUri;
-	private int maxBytesToBuffer = 550_000;
+	private int maxBytesToBuffer = 565_000;
 
 	public URI getBaseUri() {
 		return baseUri;
