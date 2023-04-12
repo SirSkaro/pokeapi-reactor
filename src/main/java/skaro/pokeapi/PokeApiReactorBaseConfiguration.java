@@ -36,8 +36,6 @@ public class PokeApiReactorBaseConfiguration {
 	public static final String POKEAPI_JSON_DECODER_BEAN = "pokeapiDecoderBean";
 	public static final String POKEAPI_JSON_ENCODER_BEAN = "pokeapiEncoderBean";
 	
-	private static final int MAX_BYTES_TO_BUFFER = 550_000;
-	
 	@Bean
 	@Valid
 	@ConfigurationProperties(CONFIGURATION_PROPERTIES_PREFIX)
@@ -86,7 +84,8 @@ public class PokeApiReactorBaseConfiguration {
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.exchangeStrategies(strategies)
 				.filter(logRequest)
-				.codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(MAX_BYTES_TO_BUFFER))
+				.codecs(configurer -> configurer.defaultCodecs()
+						.maxInMemorySize(configurationProperties.getMaxBytesToBuffer()))
 				.build();
 	}
 	
