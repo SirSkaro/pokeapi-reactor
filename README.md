@@ -118,14 +118,14 @@ public void printPokemonForms() {
 ```
 
 ### Maven Configuration
-The latest release can be pulled from GitHub's Apache Maven repository. To pull from their repository, you must add your GitHub credentials to your [settings.xml](https://maven.apache.org/settings.html) (located in `${user.home}/.m2/settings.xml`). You can read [GitHub's artical about how to do that](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry). But for impatient programmer's, below is yet another guide to configure Maven to pull from GitHub that holds your hand a little more closely - I always appreciate it when people do that.
+The latest release can be pulled from GitHub's Apache Maven repository. To pull from their repository, you must add your GitHub credentials to your [settings.xml](https://maven.apache.org/settings.html) (located in `${user.home}/.m2/settings.xml`). You can read [GitHub's article about how to do that](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry). But for impatient programmer's, below is yet another guide to configure Maven to pull from GitHub that holds your hand a little more closely - I always appreciate it when people do that.
 
 
 #### Generate a token
 [Generate a PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (Personal Access Token) with the `read:packages` privilege.
 
 #### Add \<server\> and \<repository\> tags in settings.xml 
-Configure Maven to [authenticate when trying to pull from GitHub's Apache Maven repoistory](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token). If you don't have a settings.xml, create it under your .m2 directory. It should look something like this.
+Configure Maven to [authenticate when trying to pull from GitHub's Apache Maven repository](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token). If you don't have a settings.xml, create it under your .m2 directory. It should look something like this.
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
