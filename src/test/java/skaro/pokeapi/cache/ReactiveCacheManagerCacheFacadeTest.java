@@ -47,10 +47,7 @@ public class ReactiveCacheManagerCacheFacadeTest {
 		Pokemon value = new Pokemon();
 		ArgumentCaptor<Signal<Pokemon>> cachedValueCaptor = ArgumentCaptor.forClass(Signal.class);
 		
-		when(cacheManager.getCache(value.getClass().getName()))
-			.thenReturn(cache);
-		when(cache.get(key))
-			.thenReturn(new SimpleValueWrapper(null));
+		setupCacheManagerGetCacheAndGetStubs(value.getClass().getName(), key, new SimpleValueWrapper(null));
 		
 		CacheSpec<Pokemon> cacheSpec = CacheSpec.get(Pokemon.class, key)
 				.orCache(() -> Mono.just(value));
@@ -71,10 +68,7 @@ public class ReactiveCacheManagerCacheFacadeTest {
 		String key = UUID.randomUUID().toString();
 		Pokemon value = new Pokemon();
 
-		when(cacheManager.getCache(value.getClass().getName()))
-			.thenReturn(cache);
-		when(cache.get(key))
-			.thenReturn(new SimpleValueWrapper(Signal.next(value)));
+		setupCacheManagerGetCacheAndGetStubs(value.getClass().getName(), key, new SimpleValueWrapper(Signal.next(value)));
 		
 		CacheSpec<Pokemon> cacheSpec = CacheSpec.get(Pokemon.class, key)
 				.orCache(() -> Mono.empty());
@@ -113,10 +107,7 @@ public class ReactiveCacheManagerCacheFacadeTest {
 		String key2 = UUID.randomUUID().toString();
 		Pokemon value2 = new Pokemon();
 		
-		when(cacheManager.getCache(Pokemon.class.getName()))
-			.thenReturn(cache);
-		when(cache.get(key1))
-			.thenReturn(new SimpleValueWrapper(Signal.next(value1)));
+		setupCacheManagerGetCacheAndGetStubs(Pokemon.class.getName(), key1, new SimpleValueWrapper(Signal.next(value1)));
 		when(cache.get(key2))
 			.thenReturn(new SimpleValueWrapper(Signal.next(value2)));
 		
@@ -133,4 +124,9 @@ public class ReactiveCacheManagerCacheFacadeTest {
 	}
 	
 	
+
+	private void setupCacheManagerGetCacheAndGetStubs(String getCacheArg1, Object getArg1, Cache.ValueWrapper getReturnValue) {
+		when(cacheManager.getCache(getCacheArg1)).thenReturn(cache);
+		when(cache.get(getArg1)).thenReturn(getReturnValue);
+	}
 }
